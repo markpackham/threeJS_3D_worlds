@@ -21,6 +21,19 @@ function main() {
 
   const scene = new THREE.Scene();
   const loader = new THREE.TextureLoader();
+  const texture = loader.load(
+    "https://threejs.org/manual/examples/resources/images/equirectangularmaps/tears_of_steel_bridge_2k.jpg",
+    () => {
+      scene.background = texture;
+    }
+  );
+
+  function render() {
+    renderer.render(scene, camera);
+    requestAnimationFrame(render);
+  }
+
+  requestAnimationFrame(render);
 }
 
 main();
