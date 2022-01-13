@@ -16,10 +16,6 @@ function main() {
   camera.position.z = 10;
 
   const renderer = new THREE.WebGLRenderer({ canvas });
-  const width = canvas.clientWidth;
-  const height = canvas.clientHeight;
-  renderer.setSize(width, height);
-
   new THREE.OrbitControls(camera, canvas);
 
   const scene = new THREE.Scene();
@@ -34,6 +30,12 @@ function main() {
   );
 
   function render() {
+    const width = canvas.clientWidth;
+    const height = canvas.clientHeight;
+
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+    renderer.setSize(width, height, false);
     renderer.render(scene, camera);
     requestAnimationFrame(render);
   }
