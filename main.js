@@ -13,11 +13,14 @@ function main() {
   const far = 2000;
 
   const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+  camera.position.z = 10;
 
   const renderer = new THREE.WebGLRenderer({ canvas });
   const width = canvas.clientWidth;
   const height = canvas.clientHeight;
   renderer.setSize(width, height);
+
+  new THREE.OrbitControls(camera, canvas);
 
   const scene = new THREE.Scene();
   const loader = new THREE.TextureLoader();
