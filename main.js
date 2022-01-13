@@ -24,7 +24,9 @@ function main() {
   const texture = loader.load(
     "https://threejs.org/manual/examples/resources/images/equirectangularmaps/tears_of_steel_bridge_2k.jpg",
     () => {
-      scene.background = texture;
+      const rt = new THREE.WebGLCubeRenderTarget(texture.image.height);
+      rt.fromEquirectangularTexture(renderer, texture);
+      scene.background = rt.texture;
     }
   );
 
